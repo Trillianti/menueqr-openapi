@@ -1,0 +1,329 @@
+openapi: 3.1.0
+info:
+  title: MenuQR POS Open API
+  version: 2026-05-11
+  description: Open API for external POS systems, middleware, and developer integrations.
+servers:
+  - url: https://api.example.com
+security:
+  - bearerAuth: []
+  - posApiKey: []
+paths:
+  /api/open/pos/{provider}/{restaurantId}:
+    get:
+      summary: Discover POS Open API capabilities.
+      operationId: discoverPosOpenApi
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+      responses:
+        "200":
+          description: Discovery details.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/open/pos/{provider}/{restaurantId}/menu:
+    get:
+      summary: Pull restaurant menu payload and mappings.
+      operationId: getPosMenu
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+      responses:
+        "200":
+          description: Menu payload.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/open/pos/{provider}/{restaurantId}/orders:
+    get:
+      summary: List table orders.
+      operationId: listPosOrders
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/TableOrderStatus"
+        - name: since
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        "200":
+          description: Order list.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/open/pos/{provider}/{restaurantId}/orders/{orderId}:
+    get:
+      summary: Get one table order.
+      operationId: getPosOrder
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Order.
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/open/pos/{provider}/{restaurantId}/orders/{orderId}/ack:
+    post:
+      summary: Acknowledge an order and optionally store an external mapping.
+      operationId: acknowledgePosOrder
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AcknowledgeOrderRequest"
+      responses:
+        "200":
+          description: Updated order.
+  /api/open/pos/{provider}/{restaurantId}/bills:
+    get:
+      summary: List table bills.
+      operationId: listPosBills
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: status
+          in: query
+          schema:
+            $ref: "#/components/schemas/TableBillStatus"
+        - name: since
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        "200":
+          description: Bill list.
+  /api/open/pos/{provider}/{restaurantId}/bills/{billId}:
+    get:
+      summary: Get one table bill.
+      operationId: getPosBill
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: billId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Bill.
+  /api/open/pos/{provider}/{restaurantId}/bills/{billId}/settle:
+    post:
+      summary: Mark a table bill paid from an external POS.
+      operationId: settlePosBill
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: billId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SettleBillRequest"
+      responses:
+        "200":
+          description: Updated bill.
+  /api/open/pos/{provider}/{restaurantId}/mappings:
+    get:
+      summary: List POS entity mappings.
+      operationId: listPosMappings
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: entityType
+          in: query
+          schema:
+            $ref: "#/components/schemas/PosEntityType"
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 250
+      responses:
+        "200":
+          description: Mapping list.
+    post:
+      summary: Upsert POS entity mappings.
+      operationId: upsertPosMappings
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mappings
+              properties:
+                mappings:
+                  type: array
+                  maxItems: 500
+                  items:
+                    $ref: "#/components/schemas/PosMapping"
+      responses:
+        "200":
+          description: Accepted mappings.
+  /api/open/pos/{provider}/{restaurantId}/webhooks:
+    post:
+      summary: Receive a POS webhook.
+      operationId: receivePosWebhook
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Webhook accepted.
+  /api/open/pos/{provider}/{restaurantId}/webhooks/{eventType}:
+    post:
+      summary: Receive a typed POS webhook.
+      operationId: receiveTypedPosWebhook
+      parameters:
+        - $ref: "#/components/parameters/provider"
+        - $ref: "#/components/parameters/restaurantId"
+        - name: eventType
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        "200":
+          description: Webhook accepted.
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    posApiKey:
+      type: apiKey
+      in: header
+      name: x-menuqr-pos-api-key
+  parameters:
+    provider:
+      name: provider
+      in: path
+      required: true
+      schema:
+        type: string
+        enum: [custom, mock, poster, square, toast, clover, lightspeed]
+    restaurantId:
+      name: restaurantId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    PosEntityType:
+      type: string
+      enum: [category, menu_item, menu_item_variation, table_order, table_bill]
+    TableOrderStatus:
+      type: string
+      enum: [pending, completed, canceled]
+    TableBillStatus:
+      type: string
+      enum: [open, paid, canceled]
+    PosMapping:
+      type: object
+      required: [entityType, localEntityId, externalEntityId]
+      properties:
+        entityType:
+          $ref: "#/components/schemas/PosEntityType"
+        localEntityId:
+          type: string
+        externalEntityId:
+          type: string
+        externalParentId:
+          type: string
+          nullable: true
+        metadata:
+          type: object
+    AcknowledgeOrderRequest:
+      type: object
+      properties:
+        status:
+          $ref: "#/components/schemas/TableOrderStatus"
+        externalOrderId:
+          type: string
+        externalParentId:
+          type: string
+        metadata:
+          type: object
+    SettleBillRequest:
+      type: object
+      required: [externalPaymentId]
+      properties:
+        externalPaymentId:
+          type: string
+        externalBillId:
+          type: string
+        method:
+          type: string
+        billSubtotalAmount:
+          type: string
+        tipAmount:
+          type: string
+        grossAmount:
+          type: string
+        paidAt:
+          type: string
+          format: date-time
+        metadata:
+          type: object

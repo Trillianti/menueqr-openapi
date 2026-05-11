@@ -1,0 +1,22 @@
+# GitBook and local tooling
+.gitbook/
+.honkit/
+.vitepress/cache/
+
+# Dependencies
+node_modules/
+
+# Build output
+_book/
+site/
+dist/
+out/
+
+# Environment and local notes
+.env
+.env.*
+*.local.md
+
+# System files
+.DS_Store
+Thumbs.db
