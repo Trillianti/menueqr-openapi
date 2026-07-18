@@ -64,7 +64,7 @@ Optional fields:
 | --- | --- |
 | `externalBillId` | POS bill/check/table ID stored as a mapping. |
 | `method` | Payment method label, for example `card`, `cash`, `terminal`. |
-| `billSubtotalAmount` | Bill subtotal. Defaults to MenuQR bill subtotal. |
+| `billSubtotalAmount` | Bill subtotal. Defaults to MenüQR bill subtotal. |
 | `tipAmount` | Tip amount. Defaults to `0.00`. |
 | `grossAmount` | Total paid. Defaults to subtotal plus tip. |
 | `paidAt` | Payment timestamp. Defaults to request time. |

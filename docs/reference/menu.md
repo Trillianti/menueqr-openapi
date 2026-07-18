@@ -41,7 +41,7 @@ curl https://api.example.com/api/open/pos/custom/rest_123/menu \
 
 ## Integration Rules
 
-- Treat MenuQR IDs as the source of truth for catalog objects.
+- Treat MenüQR IDs as the source of truth for catalog objects.
 - Store all created POS IDs through `POST /mappings`.
 - Repeated menu pulls are safe; use mappings to upsert instead of creating duplicates.
 - Prices are decimal strings.

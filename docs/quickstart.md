@@ -1,10 +1,10 @@
 # Quickstart
 
-This guide shows the shortest path from a configured MenuQR POS connection to a working integration.
+This guide shows the shortest path from a configured MenüQR POS connection to a working integration.
 
 ## 1. Configure a POS Connection
 
-In MenuQR, create or update a POS connection for the restaurant. For generic integrations use provider `custom`; for sandbox testing use `mock`.
+In MenüQR, create or update a POS connection for the restaurant. For generic integrations use provider `custom`; for sandbox testing use `mock`.
 
 Store an `openApiKey` credential on the POS connection. This key is used by external developers and middleware to call the open API.
 
@@ -53,7 +53,7 @@ curl "https://api.example.com/api/open/pos/custom/rest_123/orders?status=pending
 
 ## 5. Acknowledge an Order
 
-After the POS accepts an order, store the POS transaction ID in MenuQR:
+After the POS accepts an order, store the POS transaction ID in MenüQR:
 
 ```bash
 curl -X POST https://api.example.com/api/open/pos/custom/rest_123/orders/order_123/ack \

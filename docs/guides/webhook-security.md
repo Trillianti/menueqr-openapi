@@ -32,6 +32,6 @@ await fetch(webhookUrl, {
 
 ## Replay Protection
 
-MenuQR deduplicates webhook deliveries by event ID or raw-body hash. A duplicate returns `accepted: true` and `duplicate: true`.
+MenüQR deduplicates webhook deliveries by event ID or raw-body hash. A duplicate returns `accepted: true` and `duplicate: true`.
 
 For stronger replay controls, external middleware should include stable event IDs and avoid reusing IDs for different payloads.

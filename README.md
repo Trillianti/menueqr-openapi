@@ -1,6 +1,6 @@
-# MenuQR POS Open API
+# MenüQR POS Open API
 
-Developer documentation for connecting external POS systems, middleware, and integration platforms to MenuQR.
+Developer documentation for connecting external POS systems, middleware, and integration platforms to MenüQR.
 
 Use this repository as a GitBook-style documentation source. Start with `SUMMARY.md`, then follow the quickstart and endpoint reference.
 
@@ -10,7 +10,7 @@ Use this repository as a GitBook-style documentation source. Start with `SUMMARY
 - Pull and acknowledge table orders.
 - Pull and settle table bills.
 - Store local-to-external entity mappings.
-- Receive inbound POS webhooks through MenuQR.
+- Receive inbound POS webhooks through MenüQR.
 - Use API-key authentication with optional HMAC body signatures.
 
 ## Base Path

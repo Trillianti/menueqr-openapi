@@ -1,6 +1,6 @@
 # HTTP Response Envelope
 
-All `/api/...` JSON responses are wrapped by the MenuQR backend.
+All `/api/...` JSON responses are wrapped by the MenüQR backend.
 
 The payload shown in endpoint examples is the value of `data`. A successful
 HTTP response has this shape:

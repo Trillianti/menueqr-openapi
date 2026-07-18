@@ -6,7 +6,7 @@ Use provider `custom` when building a connector for an unsupported POS or middle
 
 ```mermaid
 flowchart LR
-  MenuQR["MenuQR Open API"] --> Bridge["Custom POS Bridge"]
+  MenuQR["MenüQR Open API"] --> Bridge["Custom POS Bridge"]
   Bridge --> POS["External POS"]
   POS --> Bridge
   Bridge --> MenuQR
@@ -17,7 +17,7 @@ flowchart LR
 1. Catalog sync job:
    - Pull `/menu`.
    - Upsert categories/products in the POS.
-   - Store mappings in MenuQR.
+   - Store mappings in MenüQR.
 
 2. Order job:
    - Poll `/orders?status=pending`.
@@ -39,5 +39,5 @@ flowchart LR
 - Store API keys in a secret manager.
 - Implement retries with exponential backoff.
 - Make writes idempotent with mappings and external IDs.
-- Log MenuQR `requestId` for failed responses.
-- Keep local sync state, but trust MenuQR mappings as shared sync memory.
+- Log MenüQR `requestId` for failed responses.
+- Keep local sync state, but trust MenüQR mappings as shared sync memory.

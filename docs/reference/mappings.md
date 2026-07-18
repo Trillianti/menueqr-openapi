@@ -1,6 +1,6 @@
 # Mappings
 
-Mappings connect MenuQR local entity IDs to POS external entity IDs.
+Mappings connect MenüQR local entity IDs to POS external entity IDs.
 
 ## List Mappings
 

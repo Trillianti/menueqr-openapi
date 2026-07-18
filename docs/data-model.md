@@ -18,7 +18,7 @@ Do not send floating point numbers from JavaScript clients when exact totals mat
   "generatedAt": "2026-05-11T12:00:00.000Z",
   "restaurant": {
     "id": "rest_123",
-    "name": "Cafe MenuQR",
+    "name": "Cafe MenüQR",
     "slug": "cafe-menuqr",
     "currency": "EUR",
     "defaultLanguage": "de",

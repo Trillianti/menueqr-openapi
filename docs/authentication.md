@@ -1,6 +1,6 @@
 # Authentication
 
-MenuQR POS Open API uses shared-key authentication configured per restaurant POS connection.
+MenüQR POS Open API uses shared-key authentication configured per restaurant POS connection.
 
 ## API Key
 
@@ -25,7 +25,7 @@ The OpenAPI YAML formally models the recommended `x-menuqr-pos-api-key`
 header and bearer authentication. The other two API-key headers are accepted
 for compatibility by the backend.
 
-For compatibility, MenuQR can also accept `developerApiKey`, `apiKey`, or `webhookSecret` if those are stored on the POS connection.
+For compatibility, MenüQR can also accept `developerApiKey`, `apiKey`, or `webhookSecret` if those are stored on the POS connection.
 
 ## Optional HMAC Signature
 
@@ -52,7 +52,7 @@ Secret priority:
 3. `openApiKey`
 4. `apiKey`
 
-If `x-menuqr-signature` is omitted, MenuQR authenticates with API key only. If it is present and invalid, the request is rejected.
+If `x-menuqr-signature` is omitted, MenüQR authenticates with API key only. If it is present and invalid, the request is rejected.
 
 ## Security Recommendations
 

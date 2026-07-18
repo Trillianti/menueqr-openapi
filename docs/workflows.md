@@ -5,7 +5,7 @@
 1. Call `GET /menu`.
 2. Create or update categories and products in the POS.
 3. Send created IDs to `POST /mappings`.
-4. Repeat safely whenever MenuQR menu data changes.
+4. Repeat safely whenever MenüQR menu data changes.
 
 ## Order Push
 
@@ -19,12 +19,12 @@
 1. Poll `GET /bills?status=open`.
 2. Close or settle the table in the POS.
 3. Call `POST /bills/{billId}/settle` with `externalPaymentId`.
-4. MenuQR marks the bill paid and completes linked pending orders.
+4. MenüQR marks the bill paid and completes linked pending orders.
 
 ## Webhook-Driven Updates
 
 1. POS sends event to `/webhooks/{eventType}`.
-2. MenuQR authenticates and deduplicates the event.
+2. MenüQR authenticates and deduplicates the event.
 3. Provider adapter records the webhook and may reconcile local data.
 4. Response includes `accepted`, `duplicate`, `status`, and `dedupeKey`.
 

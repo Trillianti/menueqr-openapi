@@ -1,6 +1,6 @@
 # Orders
 
-Use order endpoints to pull MenuQR table orders and acknowledge POS acceptance.
+Use order endpoints to pull MenüQR table orders and acknowledge POS acceptance.
 
 ## List Orders
 
@@ -70,7 +70,7 @@ Fields:
 
 | Name | Required | Description |
 | --- | --- | --- |
-| `status` | No | Updates the MenuQR order status. |
+| `status` | No | Updates the MenüQR order status. |
 | `externalOrderId` | No | POS order, transaction, or ticket ID. |
 | `externalParentId` | No | Optional parent entity in the POS. |
 | `metadata` | No | Extra integration metadata stored with the mapping. |

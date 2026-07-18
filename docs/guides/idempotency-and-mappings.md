@@ -4,12 +4,12 @@ Idempotency is the difference between a POS integration that survives retries an
 
 ## Catalog
 
-For each MenuQR category, item, and variation:
+For each MenüQR category, item, and variation:
 
 1. Look up an existing mapping.
 2. If present, update the POS entity.
 3. If missing, create the POS entity.
-4. Upsert the mapping back to MenuQR.
+4. Upsert the mapping back to MenüQR.
 
 ## Orders
 
@@ -21,7 +21,7 @@ If the bridge retries after a timeout, read mappings first. If the mapping exist
 
 Use a stable `externalPaymentId` in `POST /bills/{billId}/settle`.
 
-MenuQR stores it as:
+MenüQR stores it as:
 
 ```text
 {provider}:{restaurantId}:payment:{externalPaymentId}
@@ -39,4 +39,4 @@ x-event-id
 x-request-id
 ```
 
-If no ID is present, MenuQR hashes the raw body. This is safe for exact duplicate requests, but less useful if the same logical event is serialized differently.
+If no ID is present, MenüQR hashes the raw body. This is safe for exact duplicate requests, but less useful if the same logical event is serialized differently.

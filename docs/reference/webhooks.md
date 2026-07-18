@@ -20,7 +20,7 @@ curl -X POST https://api.example.com/api/open/pos/custom/rest_123/webhooks/order
   }'
 ```
 
-When `{eventType}` is present and the body is JSON, MenuQR injects `eventType` into the webhook payload before provider handling.
+When `{eventType}` is present and the body is JSON, MenüQR injects `eventType` into the webhook payload before provider handling.
 
 For the `custom` provider, the webhook is authenticated, stored, deduplicated,
 and any mappings in the payload are persisted. It does not automatically update

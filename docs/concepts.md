@@ -22,7 +22,7 @@ The API key must belong to the POS connection for the same restaurant and provid
 
 ## Local Entity IDs
 
-MenuQR IDs are stable UUID-like strings. External POS systems should store mappings from MenuQR local IDs to POS IDs.
+MenüQR IDs are stable UUID-like strings. External POS systems should store mappings from MenüQR local IDs to POS IDs.
 
 Common entity types:
 
@@ -36,7 +36,7 @@ table_bill
 
 ## Mappings
 
-Mappings are the synchronization memory between MenuQR and a POS system:
+Mappings are the synchronization memory between MenüQR and a POS system:
 
 ```json
 {
@@ -50,7 +50,7 @@ Mappings are the synchronization memory between MenuQR and a POS system:
 }
 ```
 
-MenuQR uses mappings to avoid duplicate products, orders, bills, and payments during repeated syncs.
+MenüQR uses mappings to avoid duplicate products, orders, bills, and payments during repeated syncs.
 
 ## Webhooks
 

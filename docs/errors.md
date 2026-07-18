@@ -1,6 +1,6 @@
 # Errors
 
-MenuQR returns the global API error envelope:
+MenüQR returns the global API error envelope:
 
 ```json
 {

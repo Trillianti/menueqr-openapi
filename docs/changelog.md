@@ -2,7 +2,7 @@
 
 ## 2026-05-11
 
-Initial MenuQR POS Open API documentation.
+Initial MenüQR POS Open API documentation.
 
 Documented:
 
