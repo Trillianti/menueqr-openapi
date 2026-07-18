@@ -16,6 +16,8 @@ MenuQR returns the global API error envelope:
 }
 ```
 
+Successful `/api` responses are also wrapped. See [HTTP Response Envelope](response-envelope.md).
+
 ## Common Status Codes
 
 | Status | Meaning |

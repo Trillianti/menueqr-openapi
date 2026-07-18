@@ -1,13 +1,18 @@
 openapi: 3.1.0
 info:
   title: MenuQR POS Open API
-  version: 2026-05-11
-  description: Open API for external POS systems, middleware, and developer integrations.
+  version: 2026-07-18
+  description: >-
+    Open API for external POS systems, middleware, and developer integrations.
+    JSON responses under /api are wrapped in a standard success or error
+    envelope; endpoint examples document the inner data payload.
 servers:
   - url: https://api.example.com
 security:
   - bearerAuth: []
   - posApiKey: []
+  - posApiKeyCompat: []
+  - posApiKeyGeneric: []
 paths:
   /api/open/pos/{provider}/{restaurantId}:
     get:
@@ -183,7 +188,7 @@ paths:
           schema:
             type: integer
             minimum: 1
-            maximum: 250
+            maximum: 100
       responses:
         "200":
           description: Mapping list.
@@ -256,7 +261,26 @@ components:
       type: apiKey
       in: header
       name: x-menuqr-pos-api-key
+    posApiKeyCompat:
+      type: apiKey
+      in: header
+      name: x-menuqr-api-key
+    posApiKeyGeneric:
+      type: apiKey
+      in: header
+      name: x-api-key
+  # x-menuqr-signature is optional and is validated when present on any
+  # authenticated request. It is documented here as a reusable parameter
+  # because OpenAPI security schemes cannot express optional HMAC headers.
   parameters:
+    signature:
+      name: x-menuqr-signature
+      in: header
+      required: false
+      description: Optional HMAC-SHA256 signature of the raw request body.
+      schema:
+        type: string
+        pattern: '^sha256=[0-9a-fA-F]{64}$'
     provider:
       name: provider
       in: path

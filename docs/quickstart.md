@@ -32,6 +32,9 @@ Successful response:
 }
 ```
 
+The JSON above is the inner `data` payload. The actual HTTP response is
+wrapped in the standard success envelope described in [HTTP Response Envelope](response-envelope.md).
+
 ## 3. Pull Menu Data
 
 ```bash

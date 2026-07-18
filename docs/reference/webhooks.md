@@ -22,6 +22,12 @@ curl -X POST https://api.example.com/api/open/pos/custom/rest_123/webhooks/order
 
 When `{eventType}` is present and the body is JSON, MenuQR injects `eventType` into the webhook payload before provider handling.
 
+For the `custom` provider, the webhook is authenticated, stored, deduplicated,
+and any mappings in the payload are persisted. It does not automatically update
+an order or bill from arbitrary `externalOrderId` or `externalBillId` fields.
+Provider-specific reconciliation is implemented by ready provider adapters
+where supported. Scaffolded providers store the event as ignored.
+
 ## Response
 
 ```json
@@ -59,3 +65,6 @@ POST /api/pos/webhooks/{provider}/{restaurantId}
 ```
 
 Use the open endpoint for new third-party developer integrations because it shares the same authentication model as read/write API calls.
+
+The response body shown above is the inner `data` payload inside the standard
+HTTP success envelope.

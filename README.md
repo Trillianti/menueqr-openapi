@@ -43,3 +43,28 @@ x-menuqr-signature: sha256=<hmac_sha256_raw_body>
 ```
 
 See [Authentication](docs/authentication.md) for details.
+
+## HTTP Response Envelope
+
+The backend wraps every JSON response under `/api` in a standard envelope:
+
+```json
+{
+  "success": true,
+  "data": {},
+  "requestId": "req_...",
+  "timestamp": "2026-07-18T12:00:00.000Z",
+  "path": "/api/open/pos/custom/rest_123/menu",
+  "method": "GET"
+}
+```
+
+Endpoint examples show the inner `data` payload. See [HTTP Response Envelope](docs/response-envelope.md).
+
+## Provider Availability
+
+The `custom`, `mock`, and `poster` providers are implemented in the current
+backend. `square`, `toast`, `clover`, and `lightspeed` are scaffolded provider
+slots: discovery is available, but live sync and provider-specific webhook
+processing are not implemented yet. Check `implementationStatus` and the
+capabilities returned by discovery before enabling a provider in production.

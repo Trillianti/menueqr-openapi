@@ -21,6 +21,10 @@ x-menuqr-api-key: <openApiKey>
 x-api-key: <openApiKey>
 ```
 
+The OpenAPI YAML formally models the recommended `x-menuqr-pos-api-key`
+header and bearer authentication. The other two API-key headers are accepted
+for compatibility by the backend.
+
 For compatibility, MenuQR can also accept `developerApiKey`, `apiKey`, or `webhookSecret` if those are stored on the POS connection.
 
 ## Optional HMAC Signature

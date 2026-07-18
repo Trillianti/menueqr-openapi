@@ -48,3 +48,9 @@ curl https://api.example.com/api/open/pos/custom/rest_123 \
 - Use discovery before enabling a live integration.
 - `signatureValid` is `true` only when `x-menuqr-signature` is provided and valid.
 - `implementationStatus` can be `ready` or `scaffolded`.
+- `custom`, `mock`, and `poster` are currently ready providers.
+- `square`, `toast`, `clover`, and `lightspeed` are scaffolded. Their discovery
+  metadata is available, but live provider sync is not implemented yet and
+  their webhooks are stored as ignored events.
+- The response shown above is the inner `data` payload; the HTTP response is
+  wrapped in the standard success envelope.

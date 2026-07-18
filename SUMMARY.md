@@ -7,6 +7,7 @@
 * [Data Model](docs/data-model.md)
 * [Workflows](docs/workflows.md)
 * [Errors](docs/errors.md)
+* [HTTP Response Envelope](docs/response-envelope.md)
 * [Changelog](docs/changelog.md)
 
 ## Endpoint Reference

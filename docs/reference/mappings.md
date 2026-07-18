@@ -13,7 +13,7 @@ Query parameters:
 | Name | Type | Description |
 | --- | --- | --- |
 | `entityType` | enum | Optional filter. |
-| `limit` | integer, 1-250 | Defaults to existing API behavior. |
+| `limit` | integer, 1-100 | Defaults to 50. |
 
 Example:
 
@@ -67,4 +67,5 @@ table_bill
 
 ## Limits
 
-One request can upsert up to 500 mappings.
+One request can upsert up to 500 mappings. Listing mappings currently returns
+at most 100 records per request.
